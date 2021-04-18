@@ -42,7 +42,7 @@ class HomeFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListene
         requireActivity().title = getString(R.string.app_name)
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         recyclerView = view.findViewById(R.id.recycler_view)
-        recyclerView.setHasFixedSize(true)
+        recyclerView.setHasFixedSize(false)
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         adapter = ProductRecyclerViewAdapter(this)
         recyclerView.adapter = adapter

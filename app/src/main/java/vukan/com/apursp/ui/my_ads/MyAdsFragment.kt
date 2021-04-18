@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -37,6 +36,7 @@ import vukan.com.apursp.R
 import vukan.com.apursp.adapters.CommentsAdapter
 import vukan.com.apursp.adapters.ProductRecyclerViewAdapter
 import vukan.com.apursp.models.Comment
+import vukan.com.apursp.models.Product
 import vukan.com.apursp.models.User
 import java.io.IOException
 import java.util.*
@@ -122,7 +122,7 @@ class MyAdsFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListen
         myAdsViewModel = ViewModelProvider(this).get(MyAdsViewModel::class.java)
         val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(context, 2)
         recyclerView = view.findViewById(R.id.recycler_view)
-        recyclerView.setHasFixedSize(true)
+        recyclerView.setHasFixedSize(false)
         recyclerView.layoutManager = layoutManager
         adapter = ProductRecyclerViewAdapter(this)
         recyclerView.adapter = adapter
@@ -189,8 +189,9 @@ class MyAdsFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListen
             currentUser = user
         })
 
-        myAdsViewModel.getUserProducts(userID).observe(viewLifecycleOwner, {
+        myAdsViewModel.getUserProducts(userID).observe(viewLifecycleOwner, { products ->
             adapter = ProductRecyclerViewAdapter(this)
+            adapter.setProducts(products as MutableList<Product>)
             recyclerView.adapter = adapter
         })
 

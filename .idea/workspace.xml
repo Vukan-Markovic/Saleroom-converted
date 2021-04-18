@@ -97,7 +97,7 @@
   </component>
   <component name="GenerateSignedApkSettings">
     <option name="EXPORT_PRIVATE_KEY" value="false" />
-    <option name="KEY_STORE_PATH" value="C:\Users\vukan\Google Drive\Vezbanje\Projects\APURSP - Copy\key.jks" />
+    <option name="KEY_STORE_PATH" value="C:\Users\vukan\Google Drive\Vezbanje\Projects\APURSP_Copy\key.jks" />
     <option name="KEY_ALIAS" value="key" />
     <option name="REMEMBER_PASSWORDS" value="true" />
     <option name="BUILD_TARGET_KEY" value="apk" />
@@ -143,7 +143,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="AnalyzeApkAction.lastApkPath" value="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" />
+    <property name="AnalyzeApkAction.lastApkPath" value="$USER_HOME$/Downloads/release/app-release.apk" />
     <property name="ApkExportedModule" value="APURSP.app" />
     <property name="BundleExportedModule" value="app" />
     <property name="ExportApk.ApkPath" value="C:\Users\vukan\Downloads" />
@@ -161,7 +161,7 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/release/app-release.apk" />
     <property name="multi-representation-previewC:/Users/vukan/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.0/3e159bfab49c7e6495fe374e6e5e1e989ee21dcf/recyclerview-1.2.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/vukan/AppData/Local/Android/Sdk/sources/android-30/android/widget/CompoundButton.java_selected" value="Custom views" />
     <property name="project.structure.last.edited" value="Suggestions" />
@@ -391,10 +391,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1617490160725" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1618759468049">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1618778760848">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618759468049" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618778760848" />
     <state width="1491" height="664" key="GridCell.Tab.0.bottom" timestamp="1618775604011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
