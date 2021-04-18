@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="Gradle: com.facebook.android:facebook-core:7.0.1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b915bcef05e78695205d1e21a1e2ddcb/jetified-facebook-core-7.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ed35561a4347355eca8a70e4c6cc71c2/jetified-facebook-core-7.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/58bf252835217f781e3ea3e44f5f8527/jetified-facebook-core-7.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1d4cd9787bfe4f5f3c73ff198c886c96/jetified-facebook-core-7.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f30d28658f3d5eaba5ca079840bf3cfd/jetified-facebook-core-7.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b0afb7485b1279af89a508f3166c65c9/jetified-facebook-core-7.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a895b69fd1ebd58aaa8c2c35cfdb8064/jetified-facebook-core-7.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/913806880e199ed120201f5f943386ff/jetified-facebook-core-7.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/913806880e199ed120201f5f943386ff/jetified-facebook-core-7.0.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/913806880e199ed120201f5f943386ff/jetified-facebook-core-7.0.1/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-core/7.0.1/841517f0c4534f2fbca77e1a9af0a02fe45c80a0/facebook-core-7.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-core/7.0.1/9cab0ed87d18c2e26592c01f0eabc76108deeaf8/facebook-core-7.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
