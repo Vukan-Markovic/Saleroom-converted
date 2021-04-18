@@ -8,7 +8,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.*
-import vukan.com.apursp.callbacks.*
+import vukan.com.apursp.callbacks.FavoriteCallback
+import vukan.com.apursp.callbacks.FavoritesCallback
+import vukan.com.apursp.callbacks.ProductCallback
 import vukan.com.apursp.models.*
 import java.util.*
 import kotlin.reflect.KFunction1
@@ -318,6 +320,8 @@ class Database {
                         products.add(product)
                         callback(products)
                     }
+
+                    if (task.result!!.documents.isEmpty()) callback(products)
                 }
             }
     }
@@ -389,32 +393,28 @@ class Database {
             }
     }
 
-    fun filterProducts(filters: Array<String>, callback: KFunction1<MutableList<Product>, Unit>) {
+    fun filterProducts(filters: Array<String?>, callback: KFunction1<MutableList<Product>, Unit>) {
         products = ArrayList()
         var query: Query = firestore.collection("products")
 
-        if (filters[0].isNotEmpty())
-            query = query.whereGreaterThanOrEqualTo("price", java.lang.Double.valueOf(filters[0]))
-
-        if (filters[1].isNotEmpty())
-            query = query.whereLessThanOrEqualTo("price", java.lang.Double.valueOf(filters[1]))
-
-        if (filters[2].isNotEmpty()) {
-            val date = Timestamp(filters[2].toLong(), 0)
-            query = query.whereEqualTo("datetime", date)
+        if (filters[0] == null && filters[1] == null && filters[2] == null && filters[3] == null) {
+            query = query.orderBy("datetime", Query.Direction.DESCENDING)
         }
 
-        if (filters[3].isNotEmpty()) {
+        if (filters[0]?.isNotEmpty() == true)
+            query = query.whereGreaterThanOrEqualTo("price", java.lang.Double.valueOf(filters[0]!!))
+
+        if (filters[1]?.isNotEmpty() == true)
+            query = query.whereLessThanOrEqualTo("price", java.lang.Double.valueOf(filters[1]!!))
+
+        if (filters[2]?.isNotEmpty() == true) {
             query =
-                if (filters[3] == "opadajuce") query.orderBy("price", Query.Direction.DESCENDING)
+                if (filters[2] == "opadajuce") query.orderBy("price", Query.Direction.DESCENDING)
                 else query.orderBy("price", Query.Direction.ASCENDING)
         }
 
-        if (filters[4].isNotEmpty() && filters[4] != "Sve")
-            query = query.whereEqualTo("location", filters[4])
-
-        if (filters[5].isNotEmpty())
-            query = query.whereEqualTo("categoryID", filters[5])
+        if (filters[3]?.isNotEmpty() == true)
+            query = query.whereEqualTo("categoryID", filters[3])
 
         query.get().addOnCompleteListener { task: Task<QuerySnapshot?> ->
             if (task.isSuccessful) {
@@ -429,6 +429,8 @@ class Database {
                     products.add(product)
                     callback(products)
                 }
+
+                if (task.result!!.documents.isEmpty()) callback(products)
             }
         }
     }

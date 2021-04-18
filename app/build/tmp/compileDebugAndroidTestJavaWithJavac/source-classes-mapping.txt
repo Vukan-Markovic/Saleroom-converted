@@ -1,2 +1,0 @@
-vukan/com/apursp/test/BuildConfig.java
- vukan.com.apursp.test.BuildConfig

@@ -128,7 +128,7 @@ class Repository {
             return mProducts
         }
 
-    fun filterProducts(filters: Array<String>): MutableLiveData<MutableList<Product>> {
+    fun filterProducts(filters: Array<String?>): MutableLiveData<MutableList<Product>> {
         database.filterProducts(filters, mProducts::setValue)
         return mProducts
     }

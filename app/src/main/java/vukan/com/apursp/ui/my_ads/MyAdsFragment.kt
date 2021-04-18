@@ -1,13 +1,13 @@
 package vukan.com.apursp.ui.my_ads
 
 import android.app.Activity
-import android.app.ActivityOptions
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Parcelable
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -16,10 +16,14 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -34,6 +38,7 @@ import vukan.com.apursp.adapters.CommentsAdapter
 import vukan.com.apursp.adapters.ProductRecyclerViewAdapter
 import vukan.com.apursp.models.Comment
 import vukan.com.apursp.models.User
+import java.io.IOException
 import java.util.*
 
 class MyAdsFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListener {
@@ -61,9 +66,12 @@ class MyAdsFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListen
     private lateinit var adapter2: CommentsAdapter
     private lateinit var recikler: RecyclerView
     private lateinit var recyclerView: RecyclerView
-    private var isCamera = false
     private lateinit var mAnimation: Animation
     private lateinit var myAdsViewModel: MyAdsViewModel
+    private lateinit var cameraActivityResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var galleryActivityResultLauncher: ActivityResultLauncher<Intent>
+    private var selectedImageCamera: Bitmap? = null
+    private var selectedImageGallery: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -77,6 +85,49 @@ class MyAdsFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().title = getString(R.string.my_profile)
+
+        cameraActivityResultLauncher = registerForActivityResult(
+            StartActivityForResult()
+        ) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                Glide.with(this).load(
+                    result.data?.extras?.get("data") as Bitmap?
+                ).into(avatar)
+                selectedImageCamera = result.data?.getParcelableExtra("data")
+                selectedImageGallery = null
+            }
+        }
+
+        galleryActivityResultLauncher = registerForActivityResult(
+            StartActivityForResult()
+        ) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        GlideApp.with(avatar.context).load(
+                            ImageDecoder.decodeBitmap(
+                                ImageDecoder.createSource(
+                                    requireActivity().contentResolver,
+                                    result.data?.data!!
+                                )
+                            )
+                        ).into(avatar)
+                    } else {
+                        GlideApp.with(avatar.context).load(
+                            MediaStore.Images.Media.getBitmap(
+                                requireActivity().contentResolver, result.data?.data
+                            )
+                        ).into(avatar)
+                    }
+
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+                selectedImageGallery = result.data?.data
+                selectedImageCamera = null
+            }
+        }
+
         mAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade)
         mAnimation.duration = 150
         myAdsViewModel = ViewModelProvider(this).get(MyAdsViewModel::class.java)
@@ -236,6 +287,14 @@ class MyAdsFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListen
             starGrade.visibility = View.VISIBLE
             rate.visibility = View.VISIBLE
             avatar.isClickable = false
+
+            myAdsViewModel.getUser(userID).observe(
+                viewLifecycleOwner,
+                { (_, _, _, _, _, imageUrl) ->
+                    GlideApp.with(avatar.context)
+                        .load(imageUrl)
+                        .into(avatar)
+                })
         }
 
         save.setOnClickListener {
@@ -249,6 +308,25 @@ class MyAdsFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListen
                     currentUser?.imageUrl
                 )
             )
+
+            if (selectedImageCamera != null) {
+                myAdsViewModel.updateProfilePictureBitmap(selectedImageCamera)
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.profile_updated),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            if (selectedImageGallery != null) {
+                myAdsViewModel.updateProfilePicture(selectedImageGallery)
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.profile_updated),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
             editLayout.visibility = View.INVISIBLE
             save.visibility = View.INVISIBLE
             starGrade.visibility = View.VISIBLE
@@ -315,34 +393,30 @@ class MyAdsFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListen
 
         popupMenu.setOnMenuItemClickListener { item: MenuItem ->
             if (item.itemId == R.id.camera_upload) {
-                isCamera = true
                 val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
-                startActivityForResult(
+                cameraActivityResultLauncher.launch(
                     intent,
-                    2,
-                    ActivityOptions.makeCustomAnimation(
+                    ActivityOptionsCompat.makeCustomAnimation(
                         requireContext(),
                         R.anim.fade_in,
                         R.anim.fade_out
-                    ).toBundle()
+                    )
                 )
             } else if (item.itemId == R.id.file_upload) {
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
-                intent.type = "image/jpg"
-                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+                intent.type = "image/*"
 
-                startActivityForResult(
+                galleryActivityResultLauncher.launch(
                     Intent.createChooser(
                         intent,
                         getString(R.string.choose_picture)
                     ),
-                    2,
-                    ActivityOptions.makeCustomAnimation(
+                    ActivityOptionsCompat.makeCustomAnimation(
                         requireContext(),
                         R.anim.fade_in,
                         R.anim.fade_out
-                    ).toBundle()
+                    )
                 )
             }
 
@@ -350,33 +424,6 @@ class MyAdsFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListen
         }
 
         popupMenu.show()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
-        super.onActivityResult(requestCode, resultCode, intent)
-        if (resultCode == Activity.RESULT_OK && intent != null) {
-            val profilePicturePicker = 2
-
-            if (requestCode == profilePicturePicker) {
-                if (isCamera) {
-                    Glide.with(this)
-                        .load(intent.getParcelableExtra<Parcelable>("data") as Bitmap?)
-                        .into(avatar)
-                    myAdsViewModel.updateProfilePictureBitmap(intent.getParcelableExtra("data"))
-                } else if (intent.data != null) {
-                    Glide.with(this).load(intent.data).into(avatar)
-                    myAdsViewModel.updateProfilePicture(intent.data)
-                }
-
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.profile_picture_updated),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-
-        isCamera = false
     }
 
     override fun onListItemClick(productID: String?) {

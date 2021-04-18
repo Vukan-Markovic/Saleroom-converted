@@ -4,7 +4,9 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
@@ -65,8 +68,10 @@ class NewAdWindowFragment : Fragment() {
     private var productID = ""
     private var storageReference = FirebaseStorage.getInstance().reference
     private var newProduct: Product = Product()
-    private var productImageList: MutableList<ProductImage> = mutableListOf()
+    private var productImageList: MutableList<ProductImage> = ArrayList()
     private lateinit var newAdWindowViewModel: NewAdWindowViewModel
+    private lateinit var btnDelete: Button
+    private lateinit var galleryActivityResultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -117,7 +122,129 @@ class NewAdWindowFragment : Fragment() {
                 }
             }
 
-        productImageList = ArrayList()
+        galleryActivityResultLauncher = registerForActivityResult(
+            StartActivityForResult()
+        ) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null && result.data?.data != null) {
+                try {
+                    when (counter) {
+                        0 -> {
+                            filePath = result.data?.data
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                GlideApp.with(imageView.context).load(
+                                    ImageDecoder.decodeBitmap(
+                                        ImageDecoder.createSource(
+                                            requireActivity().contentResolver,
+                                            filePath!!
+                                        )
+                                    )
+                                ).into(imageView)
+                            } else {
+                                GlideApp.with(imageView.context).load(
+                                    MediaStore.Images.Media.getBitmap(
+                                        requireActivity().contentResolver,
+                                        filePath
+                                    )
+                                ).into(imageView)
+                            }
+                        }
+                        1 -> {
+                            filePath1 = result.data?.data
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                GlideApp.with(imageView1.context).load(
+                                    ImageDecoder.decodeBitmap(
+                                        ImageDecoder.createSource(
+                                            requireActivity().contentResolver,
+                                            filePath1!!
+                                        )
+                                    )
+                                ).into(imageView1)
+                            } else {
+                                GlideApp.with(imageView1.context).load(
+                                    MediaStore.Images.Media.getBitmap(
+                                        requireActivity().contentResolver,
+                                        filePath1
+                                    )
+                                ).into(imageView1)
+                            }
+                        }
+                        2 -> {
+                            filePath2 = result.data?.data
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                GlideApp.with(imageView2.context).load(
+                                    ImageDecoder.decodeBitmap(
+                                        ImageDecoder.createSource(
+                                            requireActivity().contentResolver,
+                                            filePath2!!
+                                        )
+                                    )
+                                ).into(imageView2)
+                            } else {
+                                GlideApp.with(imageView2.context).load(
+                                    MediaStore.Images.Media.getBitmap(
+                                        requireActivity().contentResolver,
+                                        filePath2
+                                    )
+                                ).into(imageView2)
+                            }
+                        }
+                        3 -> {
+                            filePath3 = result.data?.data
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                GlideApp.with(imageView3.context).load(
+                                    ImageDecoder.decodeBitmap(
+                                        ImageDecoder.createSource(
+                                            requireActivity().contentResolver,
+                                            filePath3!!
+                                        )
+                                    )
+                                ).into(imageView3)
+                            } else {
+                                GlideApp.with(imageView3.context).load(
+                                    MediaStore.Images.Media.getBitmap(
+                                        requireActivity().contentResolver,
+                                        filePath3
+                                    )
+                                ).into(imageView3)
+                            }
+                        }
+                        4 -> {
+                            filePath4 = result.data?.data
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                GlideApp.with(imageView4.context).load(
+                                    ImageDecoder.decodeBitmap(
+                                        ImageDecoder.createSource(
+                                            requireActivity().contentResolver,
+                                            filePath4!!
+                                        )
+                                    )
+                                ).into(imageView4)
+                            } else {
+                                GlideApp.with(imageView4.context).load(
+                                    MediaStore.Images.Media.getBitmap(
+                                        requireActivity().contentResolver,
+                                        filePath4
+                                    )
+                                ).into(imageView4)
+                            }
+                        }
+                    }
+
+                    if (counter < 5) {
+                        counter++
+                        btnDelete.isEnabled = true
+                    }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
         val fireUser = FirebaseAuth.getInstance().currentUser
         newAdWindowViewModel = ViewModelProvider(this).get(NewAdWindowViewModel::class.java)
         val productViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
@@ -274,6 +401,8 @@ class NewAdWindowFragment : Fragment() {
             } else Toast.makeText(activity, R.string.upozorenje, Toast.LENGTH_SHORT).show()
         }
 
+        btnDelete.isEnabled = false
+
         btnDelete.setOnClickListener { view4: View ->
             view4.startAnimation(mAnimation)
             deleteImage()
@@ -324,87 +453,12 @@ class NewAdWindowFragment : Fragment() {
 
         counter--
         if (counter < 0) counter = 0
+        if (counter == 0) btnDelete.isEnabled = false
     }
 
     private fun chooseImage() {
-        val galleryActivityResultLauncher = registerForActivityResult(
-            StartActivityForResult()
-        ) { result: ActivityResult ->
-            if (result.resultCode == Activity.RESULT_OK && result.data != null && result.data?.data != null) {
-                try {
-                    when (counter) {
-                        0 -> {
-                            filePath = result.data?.data
-
-                            GlideApp.with(imageView.context)
-                                .load(
-                                    MediaStore.Images.Media.getBitmap(
-                                        requireActivity().contentResolver,
-                                        filePath
-                                    )
-                                )
-                                .into(imageView)
-                        }
-                        1 -> {
-                            filePath1 = result.data?.data
-
-                            GlideApp.with(imageView1.context)
-                                .load(
-                                    MediaStore.Images.Media.getBitmap(
-                                        requireActivity().contentResolver,
-                                        filePath1
-                                    )
-                                )
-                                .into(imageView1)
-                        }
-                        2 -> {
-                            filePath2 = result.data?.data
-
-                            GlideApp.with(imageView2.context)
-                                .load(
-                                    MediaStore.Images.Media.getBitmap(
-                                        requireActivity().contentResolver,
-                                        filePath2
-                                    )
-                                )
-                                .into(imageView2)
-                        }
-                        3 -> {
-                            filePath3 = result.data?.data
-
-                            GlideApp.with(imageView3.context)
-                                .load(
-                                    MediaStore.Images.Media.getBitmap(
-                                        requireActivity().contentResolver,
-                                        filePath3
-                                    )
-                                )
-                                .into(imageView3)
-                        }
-                        4 -> {
-                            filePath4 = result.data?.data
-
-                            GlideApp.with(imageView4.context)
-                                .load(
-                                    MediaStore.Images.Media.getBitmap(
-                                        requireActivity().contentResolver,
-                                        filePath4
-                                    )
-                                )
-                                .into(imageView4)
-                        }
-                    }
-
-                    if (counter < 5) counter++
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-            }
-        }
-
-        val intent = Intent()
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
 
         galleryActivityResultLauncher.launch(
             Intent.createChooser(intent, getString(R.string.izaberite_sliku)),

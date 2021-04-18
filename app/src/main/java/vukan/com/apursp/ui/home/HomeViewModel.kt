@@ -15,7 +15,7 @@ class HomeViewModel : ViewModel() {
             return mProducts
         }
 
-    fun filterProducts(filters: Array<String>?): MutableLiveData<MutableList<Product>> {
+    fun filterProducts(filters: Array<String?>?): MutableLiveData<MutableList<Product>> {
         if (filters != null) mProducts = repository.filterProducts(filters)
         return mProducts
     }

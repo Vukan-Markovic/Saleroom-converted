@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -115,12 +116,24 @@ class HomeFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListene
                     adapter.setProducts(products)
                     recyclerView.adapter = adapter
                     mSwipeRefreshLayout.isRefreshing = false
+
+                    if (products.isEmpty()) Toast.makeText(
+                        context,
+                        R.string.no_results,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 })
         } else {
             homeViewModel.products.observe(viewLifecycleOwner, { products: MutableList<Product> ->
                 adapter.setProducts(products)
                 recyclerView.adapter = adapter
                 mSwipeRefreshLayout.isRefreshing = false
+
+                if (products.isEmpty()) Toast.makeText(
+                    context,
+                    R.string.no_results,
+                    Toast.LENGTH_SHORT
+                ).show()
             })
         }
     }

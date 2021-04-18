@@ -160,7 +160,7 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="multi-representation-previewC:/Users/vukan/AppData/Local/Android/Sdk/sources/android-30/android/widget/CompoundButton.java_selected" value="Custom views" />
     <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
@@ -373,18 +373,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="560" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1616358265771" />
-    <state x="215" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1616432329407">
+    <state x="215" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1618747536289">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="215" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1616432329407" />
-    <state x="516" y="247" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1618697370297">
+    <state x="215" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1618747536289" />
+    <state x="516" y="247" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1618753543562">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="516" y="247" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1618697370297" />
-    <state x="605" y="202" key="AndroidCreateXmlResourceDialog" timestamp="1615311336723">
+    <state x="516" y="247" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1618753543562" />
+    <state x="605" y="202" key="AndroidCreateXmlResourceDialog" timestamp="1618748044040">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="605" y="202" key="AndroidCreateXmlResourceDialog/0.0.1536.824@0.0.1536.824" timestamp="1615311336723" />
+    <state x="605" y="202" key="AndroidCreateXmlResourceDialog/0.0.1536.824@0.0.1536.824" timestamp="1618748044040" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1617490160725">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
