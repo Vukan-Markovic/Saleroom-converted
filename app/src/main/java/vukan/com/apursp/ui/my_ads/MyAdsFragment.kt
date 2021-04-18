@@ -103,26 +103,15 @@ class MyAdsFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListen
         ) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK && result.data != null) {
                 try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                        GlideApp.with(avatar.context).load(
-                            ImageDecoder.decodeBitmap(
-                                ImageDecoder.createSource(
-                                    requireActivity().contentResolver,
-                                    result.data?.data!!
-                                )
-                            )
-                        ).into(avatar)
-                    } else {
-                        GlideApp.with(avatar.context).load(
-                            MediaStore.Images.Media.getBitmap(
-                                requireActivity().contentResolver, result.data?.data
-                            )
-                        ).into(avatar)
-                    }
-
+                    GlideApp.with(avatar.context).load(
+                        MediaStore.Images.Media.getBitmap(
+                            requireActivity().contentResolver, result.data?.data
+                        )
+                    ).into(avatar)
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
+
                 selectedImageGallery = result.data?.data
                 selectedImageCamera = null
             }

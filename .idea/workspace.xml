@@ -9,7 +9,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="BranchesTreeState">
@@ -41,7 +41,7 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_3a_API_30_x86]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -155,12 +155,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/app/build/generated/ap_generated_sources/debug/out/com/bumptech/glide/GeneratedAppGlideModuleImpl.java&#10;C:/Users/Win7/Google Drive/4. godina/8. semestar/Agilni pristupi u razvoju softverskih proizvoda/APURSP/app/build/generated/source/buildConfig/debug/vukan/com/apursp/BuildConfig.java" />
+    <property name="android-custom-viewC:/Users/vukan/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.0/3e159bfab49c7e6495fe374e6e5e1e989ee21dcf/recyclerview-1.2.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
     <property name="android-custom-viewC:/Users/vukan/AppData/Local/Android/Sdk/sources/android-30/android/widget/CompoundButton.java_SELECTED" value="CompoundButton" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="multi-representation-previewC:/Users/vukan/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.0/3e159bfab49c7e6495fe374e6e5e1e989ee21dcf/recyclerview-1.2.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/vukan/AppData/Local/Android/Sdk/sources/android-30/android/widget/CompoundButton.java_selected" value="Custom views" />
     <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
@@ -174,8 +176,10 @@
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="vukan.com.apursp.callbacks" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Win7\Google Drive\4. godina\8. semestar\Agilni pristupi u razvoju softverskih proizvoda\APURSP\app" />
+      <recent name="C:\Users\Win7\Google Drive\4. godina\8. semestar\Agilni pristupi u razvoju softverskih proizvoda\APURSP\app\src\main\java\vukan\com\apursp\ui\omiljeni" />
+      <recent name="C:\Users\Win7\Google Drive\4. godina\8. semestar\Agilni pristupi u razvoju softverskih proizvoda\APURSP\app\src\main\java\vukan\com\apursp\ui\proizvod" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="vukan.com.apursp.models" />
@@ -183,10 +187,8 @@
       <recent name="vukan.com.apursp.ui.proizvod_slika" />
       <recent name="vukan.com.apursp.callbacks" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Win7\Google Drive\4. godina\8. semestar\Agilni pristupi u razvoju softverskih proizvoda\APURSP\app" />
-      <recent name="C:\Users\Win7\Google Drive\4. godina\8. semestar\Agilni pristupi u razvoju softverskih proizvoda\APURSP\app\src\main\java\vukan\com\apursp\ui\omiljeni" />
-      <recent name="C:\Users\Win7\Google Drive\4. godina\8. semestar\Agilni pristupi u razvoju softverskih proizvoda\APURSP\app\src\main\java\vukan\com\apursp\ui\proizvod" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="vukan.com.apursp.callbacks" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -389,26 +391,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1617490160725" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1618730926188">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1618759468049">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618730926188" />
-    <state width="1491" height="460" key="GridCell.Tab.0.bottom" timestamp="1618730977505">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618759468049" />
+    <state width="1491" height="664" key="GridCell.Tab.0.bottom" timestamp="1618775604011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="460" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618730977505" />
-    <state width="1491" height="460" key="GridCell.Tab.0.center" timestamp="1618730977504">
+    <state width="1491" height="664" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618775604011" />
+    <state width="1491" height="664" key="GridCell.Tab.0.center" timestamp="1618775604011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="460" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1618730977504" />
-    <state width="1491" height="460" key="GridCell.Tab.0.left" timestamp="1618730977504">
+    <state width="1491" height="664" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1618775604011" />
+    <state width="1491" height="664" key="GridCell.Tab.0.left" timestamp="1618775604011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="460" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1618730977504" />
-    <state width="1491" height="460" key="GridCell.Tab.0.right" timestamp="1618730977504">
+    <state width="1491" height="664" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1618775604011" />
+    <state width="1491" height="664" key="GridCell.Tab.0.right" timestamp="1618775604011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="460" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1618730977504" />
+    <state width="1491" height="664" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1618775604011" />
     <state x="443" y="117" width="981" height="707" key="SettingsEditor" timestamp="1618731052199">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

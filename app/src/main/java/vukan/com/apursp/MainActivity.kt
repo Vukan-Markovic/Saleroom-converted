@@ -36,12 +36,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAuthStateListener: AuthStateListener
     private var mFirebaseUser: FirebaseUser? = null
     private lateinit var myAdsViewModel: MyAdsViewModel
-    private var sharedPref: SharedPreferences = getPreferences(MODE_PRIVATE)
+    private lateinit var sharedPref: SharedPreferences
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        sharedPref = getPreferences(MODE_PRIVATE)
 
         val activityResultLauncher =
             registerForActivityResult(StartActivityForResult()) { result: ActivityResult ->

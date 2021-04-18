@@ -58,11 +58,6 @@ class HomeFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListene
             android.R.color.holo_green_dark
         )
 
-        mSwipeRefreshLayout.post {
-            mSwipeRefreshLayout.isRefreshing = true
-            loadRecyclerViewData()
-        }
-
         filters.setOnClickListener {
             Navigation.findNavController(requireView())
                 .navigate(HomeFragmentDirections.pocetnaToFilteriFragmentAction())
@@ -81,6 +76,15 @@ class HomeFragment : Fragment(), ProductRecyclerViewAdapter.ListItemClickListene
                 return true
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        mSwipeRefreshLayout.post {
+            mSwipeRefreshLayout.isRefreshing = true
+            loadRecyclerViewData()
+        }
     }
 
     override fun onListItemClick(productID: String?) {
